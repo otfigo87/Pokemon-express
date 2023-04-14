@@ -10,6 +10,11 @@ const list = {
   margin: "10px",
   fontSize: "1.5em"
 }
+const a = {
+  textDecoration: "none", 
+  color: "inherit",
+  cursor: "pointer",
+}
 
 const Index = ({pokemons}) => {
     return (
@@ -20,7 +25,10 @@ const Index = ({pokemons}) => {
             <ul>
               {pokemons.map((pokemon, i) => (
                 <li key={i} style={list}>
-                  {pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}
+                  <a href={`/pokemon/${i}`} style={a}>
+                    {pokemon.name.charAt(0).toUpperCase() +
+                      pokemon.name.slice(1)}
+                  </a>
                 </li>
               ))}
             </ul>
