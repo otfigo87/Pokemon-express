@@ -13,6 +13,9 @@ app.get("/", (req, res) => {
 app.get("/pokemon", (req, res) => {
     res.render('Index', {pokemons: pokemon})
 })
+app.get("/pokemon/:id", (req, res) => {
+    res.send(req.params.id)
+})
 
 app.listen(port, (req, res) => {
     console.log(`Running at port: ${port}`)
