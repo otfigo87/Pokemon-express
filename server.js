@@ -1,20 +1,44 @@
+require('dotenv').config();
 const express = require('express');
-const pokemon = require('./models/pokemon');
+const pokemon = require('./models/pokemons');
+const Pokemon = require('./models/Pokemon');
 const app = express();
 const port = 3000;
+//connection to mdb
+const connect = require("./config/db");
+connect();
+
 //views engine config
 app.set("view engine", "jsx");
 app.engine("jsx", require("jsx-view-engine").createEngine());
+
+//middleware
+app.use(express.urlencoded({ extended: false }));
+
+//insert data to db
+// Pokemon.insertMany(pokemon)
+// .then(pokemons => console.log(pokemons))
+// .catch(error => console.error(error))
 
 //routes
 app.get("/", (req, res) => {
     res.send("Welcome to the Pokemon App!")
 })
 app.get("/pokemon", (req, res) => {
-    res.render('Index', {pokemons: pokemon})
+    Pokemon.find()
+    .then(pokemons => {
+        res.render('Index', {pokemons})
+    })
+    .catch(error => console.log(error))
+    // res.render('Index', {pokemons: pokemon})
 })
 app.get("/pokemon/:id", (req, res) => {
-    res.render('Show', {pokemons: pokemon, id: req.params.id})
+    Pokemon.find()
+      .then((pokemons) => {
+        res.render("Show", { pokemons, id: req.params.id });
+      })
+      .catch((error) => console.log(error));
+    // res.render('Show', {pokemons: pokemon, id: req.params.id})
 })
 
 
