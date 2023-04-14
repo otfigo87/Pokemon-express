@@ -5,11 +5,6 @@ const style = {
   color: "#400303",
   textAlign: "center",
 };
-const list = {
-  listStyle: "none",
-  margin: "10px",
-  fontSize: "1.5em",
-};
 const a = {
   textDecoration: "none",
   color: "inherit",
@@ -27,7 +22,7 @@ const Show = ({ pokemons, id }) => {
         <img src={`${pokemons[id].img}.jpg`} alt="Pokemon Image" />
       </div>
       <button>
-        <a href="/pokemon">BACK</a>
+        <a href="/pokemon" style={a}>BACK</a>
       </button>
     </body>
   );

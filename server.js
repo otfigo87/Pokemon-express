@@ -32,6 +32,16 @@ app.get("/pokemon", (req, res) => {
     .catch(error => console.log(error))
     // res.render('Index', {pokemons: pokemon})
 })
+app.post("/pokemon", (req, res) => {
+  Pokemon.create(req.body)
+    .then((pokemonCreated) => {
+      console.log(pokemonCreated);
+    })
+    .catch((error) => console.log(error));
+});
+app.get("/pokemon/new", (req, res) => {
+  res.render("New");
+});
 app.get("/pokemon/:id", (req, res) => {
     Pokemon.find()
       .then((pokemons) => {
@@ -40,6 +50,7 @@ app.get("/pokemon/:id", (req, res) => {
       .catch((error) => console.log(error));
     // res.render('Show', {pokemons: pokemon, id: req.params.id})
 })
+
 
 
 
